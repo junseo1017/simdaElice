@@ -1,22 +1,21 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.min.css";
 
 import "./Login.css";
 
-function Login({
-  user,
+const Login=({
   inputID,
   inputPWD,
   setInputID,
   setInputPWD,
   setUser,
-  history,
-}) {
+}) =>{
+  const navigate = useNavigate();
   const goToMain = () => {
     console.log("go main");
-    return <Navigate to="/login" />;
+    navigate("/main");
   };
 
   function handleInputID(event) {
@@ -28,7 +27,6 @@ function Login({
   }
 
   const onFinish = (values) => {
-    //event.preventDefault();
     // if (!emailCheck(inputID)) {
     //   window.alert("이메일 형식이 맞지 않습니다.");
     //   return;
@@ -43,26 +41,19 @@ function Login({
     console.log("Failed:", errorInfo);
   };
 
-  function emailCheck(id) {
+  const emailCheck=(id) =>{
     return id.indexOf("@") !== -1;
   }
 
-  function axiosPost(LoginUser) {
+  const axiosPost=(LoginUser)=> {
     axios
       .post("http://14.35.100.207:3000/users/login", {
-        user_id: inputID,
+        user_email: inputID,
         user_password: inputPWD,
       })
       .then((response) => {
         console.dir(response);
-        if (response.data.errorCode === 0) {
-          console.log("ok");
-          setUser(LoginUser);
-          goToMain();
-        } else {
-          console.log("loginError");
-          alert("loginError");
-        }
+        goToMain()
       })
       .catch((error) => {
         console.log("error");
@@ -72,15 +63,10 @@ function Login({
 
   return (
     <div className="Login">
-      <h1>Simda</h1>
+      <h1>Simple Diary - Simda</h1>
       <Form
         name="basic"
-        labelCol={{
-          span: 10,
-        }}
-        wrapperCol={{
-          span: 10,
-        }}
+        
         initialValues={{
           remember: true,
         }}
@@ -114,9 +100,10 @@ function Login({
             },
           ]}
         >
-          <Input.Password
+          <Input
             onChange={handleInputPWD}
             value={inputPWD}
+            type="password"
             placeholder="Please input your password!"
           />
         </Form.Item>
@@ -139,7 +126,9 @@ function Login({
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
-          <Link to="/register">Register</Link>
+          <Link to="/signup"><Button type="primary" htmlType="submit">
+            SignUp
+          </Button></Link>
         </Form.Item>
       </Form>
     </div>
