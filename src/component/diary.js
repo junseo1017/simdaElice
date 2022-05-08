@@ -5,7 +5,6 @@ const Dairy = memo(() => {
   const [diaryContent, setDiaryContent] = useState('');
   const diaryChange = (e) => {
     setDiaryContent(e.target.value);
-    console.log(diaryContent);
   };
   return (
     <>
