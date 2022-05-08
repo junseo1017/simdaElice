@@ -1,8 +1,14 @@
+@import '~antd/dist/antd.css';
+
+h1 {
+  text-align: center;
+}
+
 .formDiv {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 .formTag {
