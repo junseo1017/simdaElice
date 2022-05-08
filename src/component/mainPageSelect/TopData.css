@@ -1,0 +1,134 @@
+
+.weather-selection,
+.weather-selection *,
+.emotion-selection,
+.emotion-selection * {
+    box-sizing: border-box;
+}
+
+.weather-selection,
+.weather-selection .weather-option,
+.weather-selection .weather-cover,
+.emotion-selection,
+.emotion-selection .emotion-option,
+.emotion-selection .emotion-cover {
+    transition-duration: 0.6s;
+}
+
+.weather-selection, .emotion-selection {
+    position: relative;
+    /* display: inline-block; */
+    border-radius: 10px;
+    width: 150px;
+    min-height: 2.3em;
+    background: #A9ADB6;
+    border-radius: 0.25em;
+    perspective: 300;
+    box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
+}
+
+.weather-selection .weather-option,
+.emotion-selection .emotion-option {
+    transition-timing-function: ease;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.weather-selection .weather-option a,
+.emotion-selection .emotion-option a {
+    text-decoration: none;
+    /* font-weight: bold;
+    color: #FC1786; */
+}
+
+.weather-selection .weather-cover,
+.emotion-selection .emotion-cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform-origin: left bottom;
+    transform-style: preserve-3d;
+    /* font: 1.25em/2 "icon"; */
+    /* font: 1.25em/2; */
+    color: white;
+    text-align: center;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.weather-inner,
+.weather-outer,
+.emotion-inner,
+.emotion-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 0.25em;
+    background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* .weather-inner:after, .weather-outer:after {
+    content: "d";
+} */
+
+.weather-outer,
+.emotion-outer {
+    background-color: rgb(167, 75, 167);
+    transform: translateZ(0.25em);
+    line-height: 2.3em;
+}
+
+.weather-inner,
+.emotion-inner {
+    background-color: rgb(203, 92, 203);
+}
+
+.weather-selection:hover,
+.emotion-selection:hover {
+    background: #EBEFF2;
+}
+
+.weather-selection:hover .weather-option,
+.emotion-selection:hover .emotion-option {
+    opacity: 1;
+}
+
+.weather-selection:hover .weather-cover,
+.emotion-selection:hover .emotion-cover {
+    transform: rotateY(-120deg);
+}
+
+.weather-selection:hover .weather-inner,
+.emotion-selection:hover .emotion-inner {
+    background-color: rgb(167, 75, 167);
+}
+
+.weather-selection:hover .weather-outer,
+.emotion-selection:hover .emotion-outer {
+    background-color: purple;
+}
+
+.weather-selection:hover .weather-cover,
+.weather-selection:hover .weather-outer,
+.weather-selection:hover .weather-inner,
+.emotion-selection:hover .emotion-cover,
+.emotion-selection:hover .emotion-outer,
+.emotion-selection:hover .emotion-inner {
+    transition-timing-function: cubic-bezier(0.2, 0.7, 0.1, 1.1);
+}
+
+
+.datestyle{
+    background-color: rgb(167, 75, 167) ;
+}
+
+
+.datestyle input::placeholder,
+.datestyle input {
+    color: white;
+}

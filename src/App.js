@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Login from './component/signinup/Login.js'
 import SignUp from './component/signinup/sign.js'
+import ImageUpload from "./components/ImageUpload";
 import { useState } from 'react';
 import { Route, Routes  } from 'react-router-dom';
 
@@ -21,8 +22,8 @@ const App = () => {
          />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/main" element={<SignUp user={user} />} />
+      <Route path="/main" element={<ImageUpload />} />
+
     </Routes>
-  );
-};
 
 export default App;

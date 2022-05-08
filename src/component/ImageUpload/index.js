@@ -1,57 +1,63 @@
 import { useState } from "react";
 import ImageUploading from "react-images-uploading";
-import './style.css'
-const ImageUpload = () => {
-    const [images, setImages] = useState([]);
-    const maxNumber = 2;
-    const onChange = (imageList, addUpdateIndex) => {
-        // data for submit
-        console.log(imageList, addUpdateIndex);
-        setImages(imageList);
-      };
-    return (
-        <>
-            <ImageUploading
-                multiple
-                value={images}
-                onChange={onChange}
-                maxNumber={maxNumber}
-                dataURLKey="data_url"
-            >
-                {({
-                    imageList,
-                    onImageUpload,
-                    onImageRemoveAll,
-                    onImageUpdate,
-                    onImageRemove,
-                    isDragging,
-                    dragProps
-                }) => (
-                // write your building UI
-                <div className="upload__image-wrapper">
-                    <button
-                    style={isDragging ? { color: "red" } : null}
-                    onClick={onImageUpload}
-                    {...dragProps}
-                    >
-                    Click or Drop here
-                    </button>
-                    &nbsp;
-                    <button onClick={onImageRemoveAll}>Remove all images</button>
-                    {imageList.map((image, index) => (
-                    <div key={index} className="image-item">
-                        <img src={image.data_url} alt="" width="500" />
-                        <div className="image-item__btn-wrapper">
-                        <button onClick={() => onImageUpdate(index)}>Update</button>
-                        <button onClick={() => onImageRemove(index)}>Remove</button>
-                        </div>
-                    </div>
-                    ))}
-                    </div>
-                )}
-            </ImageUploading>
-        </>
-    )
-}
+import "./style.css";
 
-export default ImageUpload
+const ImageUpload = () => {
+  const [images, setImages] = useState([]);
+  const maxNumber = 2;
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
+  const onError = (errors, files) => {
+    if (errors.maxNumber) {
+      alert("이미지는 2개까지만 첨부할 수 있습니다");
+    }
+  };
+  return (
+    <>
+      <ImageUploading
+        multiple
+        value={images}
+        onChange={onChange}
+        maxNumber={maxNumber}
+        dataURLKey="data_url"
+        onError={onError}
+      >
+        {({
+          imageList,
+          onImageUpload,
+          onImageRemoveAll,
+          onImageUpdate,
+          onImageRemove,
+          isDragging,
+          dragProps,
+        }) => (
+          <div className="upload__image-wrapper">
+            <button
+              style={isDragging ? { color: "red" } : null}
+              onClick={onImageUpload}
+              {...dragProps}
+            >
+              이미지 등록
+            </button>
+            &nbsp;
+            <button onClick={onImageRemoveAll}>이미지 전체 삭제</button>
+            {imageList.map((image, index) => (
+              <div key={index} className="image-item">
+                <img src={image.data_url} alt="" width="400" />
+                <div className="image-item__btn-wrapper">
+                  <button onClick={() => onImageUpdate(index)}>변경</button>
+                  <button onClick={() => onImageRemove(index)}>삭제</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </ImageUploading>
+    </>
+  );
+};
+
+export default ImageUpload;
