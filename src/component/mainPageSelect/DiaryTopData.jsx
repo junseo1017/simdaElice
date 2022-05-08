@@ -1,29 +1,68 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faFaceLaughBeam } from "@fortawesome/free-solid-svg-icons";
-// import { faStar as FaStarRegular } from "@fortawesome/free-regular-svg-icons";
-// import { faStar } from "@fortawesome/free-solid-svg-icons";
-// import { faStar as FaStarRegular } from "@fortawesome/free-regular-svg-icons";
 import axios from 'axios';
 import {
     faFaceLaughBeam, faFaceAngry, faFaceSadCry, faFaceGrinHearts, faFaceTired, faFaceFrown, faSun
 } from "@fortawesome/free-regular-svg-icons";
-import { faCloud } from '@fortawesome/free-solid-svg-icons';
-import { DatePicker, Space, Button } from 'antd';
-// import 'antd/dist/antd.css';
+import { faCloud, faWind, faCloudShowersHeavy, faCloudBolt, faSnowflake } from '@fortawesome/free-solid-svg-icons';
+import { DatePicker, Space } from 'antd';
 import 'antd/dist/antd.min.css';
-import SelectWeather from "./SelectWeather";
-import SelectEmotion from "./SelectEmotion";
+import './TopData.css';
+// import './datePickerStyle.css';
+import WeatherOption from "./WeatherOption";
+import EmotionOption from "./EmotionOption";
 
 
+// axios({
+// 	method: 'get',
+// 	url: '/test?name=veneas'
+// })
+// .then(response => {
+//     console.log(response);
+// })
+// .catch(err => {
+//     console.log(err);
+// })
+
+
+const initialState = {
+    weather: '',
+    emotion: '',
+}
+
+export const SET_WEATHER = 'SET_WEATHER';
+export const SET_EMOTION = 'SET_EMOTION';
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case SET_WEATHER: {
+            return {
+                ...state,
+                weather: action.weatherValue,
+            }
+        }
+        case SET_EMOTION: {
+            return {
+                ...state,
+                emotion: action.emotionValue,
+            }
+        }
+        default:
+            return state;
+    }
+}
 
 const DiaryTopData = () => {
 
-    const [data, setData] = useState(null);
-    const [weather, setWeather] = useState(null);
-    const [emotion, setEmotion] = useState(null);
-    const [emotionOptionShown, setEmotionOptionShown] = useState(true);
-    const [weatherOptionShown, setWeatherOptionShown] = useState(true);
+    // const [weather, setWeather] = useState(null);
+    // const [emotionOptionShown, setEmotionOptionShown] = useState(true);
+    // const [emotion, setEmotion] = useState(null);
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const { weather, emotion } = state;
+    // const [weatherOptionShown, setWeatherOptionShown] = useState(true);
+
+    const weatherArray = [faSun, faCloud, faWind, faCloudShowersHeavy, faSnowflake, faCloudBolt];
+    const emotionArray = [faFaceLaughBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry];
 
     /*
 
@@ -33,82 +72,44 @@ const DiaryTopData = () => {
         데이터 표현:   0 ,   1,    2,    3,    4,   5 
 
         emotion => 기쁨,  신남,  슬픔,  피곤함,  찡그림,  분노
-             표현:   0 ,     1,    2,      3,     4,    5   
+             표현:   0 ,     1,     2,      3,      4,    5   
 
 
     */
 
-    
-
-    const onHoverWeather = () => {
-        setWeatherOptionShown(prevCheck => !prevCheck);
-        // console.log('hovercheck', weatherOptionShown);
-    }
-             
-    const onClickWeather = (e) => {
-        e.preventDefault();
-        // console.log(e.currentTarget.getAttribute('values'))
-        const clickValue = e.currentTarget.getAttribute('values');
-        setWeather(clickValue);
-    }
-             
-             
-    const onHoverEmotion = () => {
-        // console.log('hover check');
-        setEmotionOptionShown(!emotionOptionShown);
-    }
-    
-    const onClickEmotion = (e) => {
-        // e.currentTarget, e.target
-        // console.log( e.target, e.currentTarget );
-        // console.log(e.currentTarget.getAttribute('values'))
-        e.preventDefault();
-        const clickValue = e.currentTarget.getAttribute('values');
-        setEmotion(clickValue);
-    }
+    // useReducer를 이용해서 자식 컴포넌트에서 state 값을 변경한 것을 적용시켜야함.
 
 
     return (
         <>
-            <Space>
-                <DatePicker />
-                <div style={{ display: "inline-block", borderRadius: "10px", border: "3px solid purple", width: '130px' }} onMouseEnter={onHoverWeather} onMouseLeave={onHoverWeather}>
-                    { weatherOptionShown ? <span>오늘의 날씨는!<SelectWeather  number={weather} /></span>
-                      : <Space>
-                        <a href="" values={0} onClick={onClickWeather}>
-                            <FontAwesomeIcon icon={faSun} />
-                        </a>
-                        <a href="" values={1} onClick={onClickWeather}>
-                            <FontAwesomeIcon icon={faCloud} />
-                        </a>
-                        {/* <FontAwesomeIcon icon="fa-regular fa-wind" /> */}
-                        {/* <FontAwesomeIcon icon="fa-regular fa-cloud-showers-heavy" /> */}
-                        {/* <FontAwesomeIcon icon="fa-regular fa-cloud-snow" /> */}
-                        {/* <FontAwesomeIcon icon="fa-regular fa-cloud-bolt" /> */}
-                    </Space>}
+            <Space align="center">
+                <DatePicker
+                    showTime={false} showNow={true} format={' YYYY/ MM/ DD'} bordered={true}
+                    className="datestyle"
+                />
+                <div className="weather-selection" >
+                    <WeatherOption weather={weather} dispatch={dispatch} />
+                    <div className="weather-cover">
+                        {weather ?
+                            <div className="weather-outer">
+                                오늘 날씨<FontAwesomeIcon icon={weatherArray[weather]} />!
+                            </div>
+                            : <div className="weather-outer">날씨를 입력해주세요!</div>
+                        }
+                        <div className="weather-inner"></div>
+                    </div>
                 </div>
-                <div style={{ display: "inline-block", borderRadius: "10px", border: "3px solid purple", width: '130px' }} onMouseEnter={onHoverEmotion} onMouseLeave={onHoverEmotion}>
-                    {emotionOptionShown ? <span>오늘의 기분은!<SelectEmotion  number={emotion} /></span>
-                    : <Space>
-                        <a href="" values={0} onClick={onClickEmotion}>
-                            <FontAwesomeIcon  icon={faFaceLaughBeam} />
-                        </a>
-                        <a href="" values={1} onClick={onClickEmotion}>
-                            <FontAwesomeIcon icon={faFaceGrinHearts} />
-                        </a>
-                        <a href="" values={2} onClick={onClickEmotion}>
-                            <FontAwesomeIcon icon={faFaceSadCry} />
-                        </a>
-                        <a href="" values={3} onClick={onClickEmotion}>
-                            <FontAwesomeIcon icon={faFaceTired} />
-                        </a>
-                        <a href="" values={4} onClick={onClickEmotion}>
-                            <FontAwesomeIcon icon={faFaceFrown} />
-                        </a>
-                        <a href="" values={5} onClick={onClickEmotion}>
-                            <FontAwesomeIcon icon={faFaceAngry} />
-                        </a>
-                    </Space>}
+                <div className="emotion-selection">
+                    <EmotionOption emotion={emotion} dispatch={dispatch} />
+                    <div className="emotion-cover">
+                        {emotion ?
+                            <div className="emotion-outer">
+                                오늘 기분<FontAwesomeIcon icon={emotionArray[emotion]} />!
+                            </div>
+                            : <div className="emotion-outer">기분을 입력해주세요!</div>
+                        }
+                        <div className="emotion-inner"></div>
+                    </div>
                 </div>
             </Space>
         </>
