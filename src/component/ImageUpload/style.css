@@ -1,15 +1,30 @@
-/* image upload */
+
+@import url(//font.elice.io/EliceDigitalBaeum.css);
+
+
 .image-item {
     display: flex;
+    flex-direction: row;
     margin: 10px 0;
-    width: 500px
+    
   }
   .image-item__btn-wrapper {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    width: 50px;
+    height: 40px;
+    
   }
   button {
-    height: 40px;
+    height: 30px;
+    background-color: #65499c;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 0;
+    margin: 2px 0;
+    font-size: 10px;
+    font-family: "Elice Digital Baeum",sans-serif;
   }
   
+
