@@ -2,7 +2,7 @@ import React, {useState, memo, useRef} from 'react';
 import './sign.css';
 import axios from 'axios';
 // import './loginRef';
-import './diary.js';
+//import './diary.js';
 import {useNavigate, Link, Navigate} from 'react-router-dom';
 
 const reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;

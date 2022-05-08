@@ -1,4 +1,4 @@
-git adimport { useState } from "react";
+import { useState } from "react";
 import ImageUploading from "react-images-uploading";
 import './style.css'
 const ImageUpload = () => {
