@@ -9,7 +9,6 @@ import './TopData.css';
 // import './datePickerStyle.css';
 import WeatherOption from './WeatherOption';
 import EmotionOption from './EmotionOption';
-import DairyContent from './diarycontent';
 
 // axios({
 // 	method: 'get',
