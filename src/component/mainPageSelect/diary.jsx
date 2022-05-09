@@ -1,48 +1,50 @@
-import React, { useState, useRef } from "react";
-import { Tabs, Calendar, Badge } from 'antd';
+import React, {useState, useRef} from 'react';
+import {Tabs, Calendar, Badge} from 'antd';
 import 'antd/dist/antd.min.css';
-import DiaryTopData from "./DiaryTopData";
+import DiaryTopData from './DiaryTopData';
+import DairyContent from './diarycontent';
+import ImageUpload from '../ImageUpload/index';
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 function getListData(value) {
-    let listData;
-    // console.log(value.date());
-    switch (value.date()) {
-        default:
-            break;
-    }
-    return listData || [];
+  let listData;
+  // console.log(value.date());
+  switch (value.date()) {
+    default:
+      break;
+  }
+  return listData || [];
 }
 
 function dateCellRender(value) {
-    const listData = getListData(value);
-    // console.log(listData);
-    return (
-        <ul className="">
-            {listData.map(item => (
-                <li key={item.content}>
-                    <Badge status={item.type} text={item.content} />
-                </li>
-            ))}
-        </ul>
-    );
+  const listData = getListData(value);
+  // console.log(listData);
+  return (
+    <ul className=''>
+      {listData.map((item) => (
+        <li key={item.content}>
+          <Badge status={item.type} text={item.content} />
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 function getMonthData(value) {
-    if (value.month() === 8) {
-        return 1394;
-    }
+  if (value.month() === 8) {
+    return 1394;
+  }
 }
 
 function monthCellRender(value) {
-    const num = getMonthData(value);
-    return num ? (
-        <div>
-            <section>{num}</section>
-            <span>Backlog number</span>
-        </div>
-    ) : null;
+  const num = getMonthData(value);
+  return num ? (
+    <div>
+      <section>{num}</section>
+      <span>Backlog number</span>
+    </div>
+  ) : null;
 }
 
 /*
@@ -51,34 +53,28 @@ function monthCellRender(value) {
       Calendar API에서 onSelect 속성을 이용해서 구현예정
 */
 
-
-
 const Diary = () => {
-    const [clickPage, setClickPage] = useState(false);
+  const [clickPage, setClickPage] = useState(false);
 
-    const onChangePage = (e) => {
-        console.log(e);
-        setClickPage(prev => !prev)
-    }
+  const onChangePage = (e) => {
+    console.log(e);
+    setClickPage((prev) => !prev);
+  };
 
-    return (
-        <>
-            <Tabs tabPosition={'right'} onTabClick={onChangePage}>
-                <TabPane tab="Calender" key="1">
-                    {clickPage ?
-                        <DiaryTopData />
-                        : <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onChangePage} />
-                    }
-                </TabPane>
-                <TabPane tab="Diary List" key="2">
+  return (
+    <>
+      <Tabs tabPosition={'right'} onTabClick={onChangePage}>
+        <TabPane tab='Calender' key='1'>
+          {clickPage ? <DiaryTopData /> : <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onChangePage} />}
+          <ImageUpload />
+          <DairyContent />
+        </TabPane>
 
-                </TabPane>
-                <TabPane tab="Set Up" key="3">
-
-                </TabPane>
-            </Tabs>
-        </>
-    )
-}
+        <TabPane tab='Diary List' key='2'></TabPane>
+        <TabPane tab='Set Up' key='3'></TabPane>
+      </Tabs>
+    </>
+  );
+};
 
 export default Diary;
