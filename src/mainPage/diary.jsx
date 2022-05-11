@@ -1,11 +1,12 @@
-import React, {useState, useRef} from 'react';
-import {Tabs, Calendar, Badge} from 'antd';
-import 'antd/dist/antd.min.css';
-import DiaryTopData from './DiaryTopData';
-import DairyContent from './diarycontent';
-import ImageUpload from '../ImageUpload/index';
+import React, { useState, useRef } from "react";
+import { Tabs, Calendar, Badge } from "antd";
+import "antd/dist/antd.min.css";
 
-const {TabPane} = Tabs;
+import DiaryTopData from "./component/DiaryTopData.jsx";
+import DairyContent from "./component/diarycontent.js";
+import ImageUpload from "./component/ImageUpload.js";
+
+const { TabPane } = Tabs;
 
 function getListData(value) {
   let listData;
@@ -21,7 +22,7 @@ function dateCellRender(value) {
   const listData = getListData(value);
   // console.log(listData);
   return (
-    <ul className=''>
+    <ul className="">
       {listData.map((item) => (
         <li key={item.content}>
           <Badge status={item.type} text={item.content} />
@@ -63,15 +64,23 @@ const Diary = () => {
 
   return (
     <>
-      <Tabs tabPosition={'right'} onTabClick={onChangePage}>
-        <TabPane tab='Calender' key='1'>
-          {clickPage ? <DiaryTopData /> : <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onChangePage} />}
+      <Tabs tabPosition={"right"} onTabClick={onChangePage}>
+        <TabPane tab="Calender" key="1">
+          {clickPage ? (
+            <DiaryTopData />
+          ) : (
+            <Calendar
+              dateCellRender={dateCellRender}
+              monthCellRender={monthCellRender}
+              onSelect={onChangePage}
+            />
+          )}
           <ImageUpload />
           <DairyContent />
         </TabPane>
 
-        <TabPane tab='Diary List' key='2'></TabPane>
-        <TabPane tab='Set Up' key='3'></TabPane>
+        <TabPane tab="Diary List" key="2"></TabPane>
+        <TabPane tab="Set Up" key="3"></TabPane>
       </Tabs>
     </>
   );

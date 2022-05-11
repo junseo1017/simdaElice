@@ -1,20 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 import { Form, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.min.css";
 
-import "./Login.css";
+import "./signin.css";
 
-const Login=({
-  inputID,
-  inputPWD,
-  setInputID,
-  setInputPWD,
-  setUser,
-}) =>{
+const SignIn = () => {
+  const [inputID, setInputID] = useState("");
+  const [inputPWD, setInputPWD] = useState("");
   const navigate = useNavigate();
+
   const goToMain = () => {
-    console.log("go main");
     navigate("/main");
   };
 
@@ -41,32 +38,30 @@ const Login=({
     console.log("Failed:", errorInfo);
   };
 
-  const emailCheck=(id) =>{
+  const emailCheck = (id) => {
     return id.indexOf("@") !== -1;
-  }
+  };
 
-  const axiosPost=(LoginUser)=> {
+  const axiosPost = (LoginUser) => {
     axios
       .post("http://14.35.100.207:3000/users/login", {
         user_email: inputID,
         user_password: inputPWD,
       })
       .then((response) => {
-        console.dir(response);
-        goToMain()
+        goToMain();
       })
       .catch((error) => {
         console.log("error");
         console.log(error);
       });
-  }
+  };
 
   return (
     <div className="Login">
       <h1>Simple Diary - Simda</h1>
       <Form
         name="basic"
-        
         initialValues={{
           remember: true,
         }}
@@ -126,13 +121,15 @@ const Login=({
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
-          <Link to="/signup"><Button type="primary" htmlType="submit">
-            SignUp
-          </Button></Link>
+          <Link to="/signup">
+            <Button type="primary" htmlType="submit">
+              SignUp
+            </Button>
+          </Link>
         </Form.Item>
       </Form>
     </div>
   );
-}
+};
 
-export default Login;
+export default SignIn;

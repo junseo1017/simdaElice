@@ -5,7 +5,8 @@
 }
 
 body {
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg")
+    center center no-repeat;
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -15,19 +16,19 @@ body {
   font-family: "Fjalla One";
 }
 
-.ant-form-item-required{
+.ant-form-item-required {
   margin: 0;
   padding: 0;
 }
 
-.Login {
+.formDiv {
   background: #e9e6f0;
   padding: 50px 100px;
   border: 2px solid black;
   box-shadow: 15px 15px 1px #9575cd, 15px 15px 1px 2px black;
 }
 
-.Login .ant-input{
+.formDiv .ant-input {
   display: block;
   width: 100%;
   font-size: 14pt;
@@ -43,11 +44,11 @@ body {
   color: black;
 }
 
-.Login input:focus {
+.formDiv input:focus {
   border-bottom: 5px solid #9575cd;
 }
 
-.Login button {
+.formDiv button {
   display: block;
   height: 40px;
   margin: 0 auto;
@@ -60,25 +61,24 @@ body {
   border: 1px solid black;
   box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
 }
-.Login button:hover {
+.formDiv button:hover {
   background: black;
   color: white;
   border: 1px solid black;
 }
 
-.Login ::selection {
+.formDiv ::selection {
   background: #ffc8ff;
 }
 
-.Login input:-webkit-autofill,
-.Login input:-webkit-autofill:hover,
-.Login input:-webkit-autofill:focus {
+.formDiv input:-webkit-autofill,
+.formDiv input:-webkit-autofill:hover,
+.formDiv input:-webkit-autofill:focus {
   border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2A293E;
-  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  -webkit-text-fill-color: #2a293e;
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.ant-form-item-control-input-content{
+.ant-form-item-control-input-content {
   display: flex;
 }

@@ -1,14 +1,30 @@
-import React, {useReducer, useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import axios from 'axios';
-import {faFaceLaughBeam, faFaceAngry, faFaceSadCry, faFaceGrinHearts, faFaceTired, faFaceFrown, faSun} from '@fortawesome/free-regular-svg-icons';
-import {faCloud, faWind, faCloudShowersHeavy, faCloudBolt, faSnowflake} from '@fortawesome/free-solid-svg-icons';
-import {DatePicker, Space} from 'antd';
-import 'antd/dist/antd.min.css';
-import './TopData.css';
+import React, { useReducer, useState } from "react";
+import { DatePicker, Space } from "antd";
+import "antd/dist/antd.min.css";
+import axios from "axios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFaceLaughBeam,
+  faFaceAngry,
+  faFaceSadCry,
+  faFaceGrinHearts,
+  faFaceTired,
+  faFaceFrown,
+  faSun,
+} from "@fortawesome/free-regular-svg-icons";
+import {
+  faCloud,
+  faWind,
+  faCloudShowersHeavy,
+  faCloudBolt,
+  faSnowflake,
+} from "@fortawesome/free-solid-svg-icons";
+
+import "./layout/TopData.css";
+import WeatherOption from "./topContent/WeatherOption";
+import EmotionOption from "./topContent/EmotionOption";
 // import './datePickerStyle.css';
-import WeatherOption from './WeatherOption';
-import EmotionOption from './EmotionOption';
 
 // axios({
 // 	method: 'get',
@@ -22,12 +38,12 @@ import EmotionOption from './EmotionOption';
 // })
 
 const initialState = {
-  weather: '',
-  emotion: '',
+  weather: "",
+  emotion: "",
 };
 
-export const SET_WEATHER = 'SET_WEATHER';
-export const SET_EMOTION = 'SET_EMOTION';
+export const SET_WEATHER = "SET_WEATHER";
+export const SET_EMOTION = "SET_EMOTION";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -53,11 +69,25 @@ const DiaryTopData = () => {
   // const [emotionOptionShown, setEmotionOptionShown] = useState(true);
   // const [emotion, setEmotion] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {weather, emotion} = state;
+  const { weather, emotion } = state;
   // const [weatherOptionShown, setWeatherOptionShown] = useState(true);
 
-  const weatherArray = [faSun, faCloud, faWind, faCloudShowersHeavy, faSnowflake, faCloudBolt];
-  const emotionArray = [faFaceLaughBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry];
+  const weatherArray = [
+    faSun,
+    faCloud,
+    faWind,
+    faCloudShowersHeavy,
+    faSnowflake,
+    faCloudBolt,
+  ];
+  const emotionArray = [
+    faFaceLaughBeam,
+    faFaceGrinHearts,
+    faFaceSadCry,
+    faFaceTired,
+    faFaceFrown,
+    faFaceAngry,
+  ];
 
   /*
 
@@ -76,34 +106,40 @@ const DiaryTopData = () => {
 
   return (
     <>
-      <Space align='center'>
-        <DatePicker showTime={false} showNow={true} format={' YYYY/ MM/ DD'} bordered={true} className='datestyle' />
-        <div className='weather-selection'>
+      <Space align="center">
+        <DatePicker
+          showTime={false}
+          showNow={true}
+          format={" YYYY/ MM/ DD"}
+          bordered={true}
+          className="datestyle"
+        />
+        <div className="weather-selection">
           <WeatherOption weather={weather} dispatch={dispatch} />
-          <div className='weather-cover'>
+          <div className="weather-cover">
             {weather ? (
-              <div className='weather-outer'>
+              <div className="weather-outer">
                 오늘 날씨
                 <FontAwesomeIcon icon={weatherArray[weather]} />!
               </div>
             ) : (
-              <div className='weather-outer'>날씨를 입력해주세요!</div>
+              <div className="weather-outer">날씨를 입력해주세요!</div>
             )}
-            <div className='weather-inner'></div>
+            <div className="weather-inner"></div>
           </div>
         </div>
-        <div className='emotion-selection'>
+        <div className="emotion-selection">
           <EmotionOption emotion={emotion} dispatch={dispatch} />
-          <div className='emotion-cover'>
+          <div className="emotion-cover">
             {emotion ? (
-              <div className='emotion-outer'>
+              <div className="emotion-outer">
                 오늘 기분
                 <FontAwesomeIcon icon={emotionArray[emotion]} />!
               </div>
             ) : (
-              <div className='emotion-outer'>기분을 입력해주세요!</div>
+              <div className="emotion-outer">기분을 입력해주세요!</div>
             )}
-            <div className='emotion-inner'></div>
+            <div className="emotion-inner"></div>
           </div>
         </div>
       </Space>
