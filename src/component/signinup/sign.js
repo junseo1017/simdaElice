@@ -2,7 +2,6 @@ import React, {useState, memo, useRef, useCallback, useReducer} from 'react';
 import './sign.css';
 import {Typography, Input, Button} from 'antd';
 import axios from 'axios';
-import './diarycontent.js';
 import {useNavigate, Link} from 'react-router-dom';
 
 const initialState = {
