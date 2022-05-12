@@ -17,7 +17,6 @@
 
 .weather-selection, .emotion-selection {
     position: relative;
-    /* display: inline-block; */
     border-radius: 10px;
     width: 150px;
     min-height: 2.3em;
@@ -34,13 +33,13 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    justify-content: center;
 }
 
 .weather-selection .weather-option a,
 .emotion-selection .emotion-option a {
     text-decoration: none;
-    /* font-weight: bold;
-    color: #FC1786; */
+    color: #F0F8FF;
 }
 
 .weather-selection .weather-cover,
@@ -52,8 +51,6 @@
     left: 0;
     transform-origin: left bottom;
     transform-style: preserve-3d;
-    /* font: 1.25em/2 "icon"; */
-    /* font: 1.25em/2; */
     color: white;
     text-align: center;
     pointer-events: none;
@@ -72,25 +69,23 @@
     background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
 }
 
-/* .weather-inner:after, .weather-outer:after {
-    content: "d";
-} */
 
 .weather-outer,
 .emotion-outer {
-    background-color: rgb(167, 75, 167);
+    background-color: #65499c;
     transform: translateZ(0.25em);
-    line-height: 2.3em;
+    line-height: 2.9em;
+    font-size: 0.8em;
 }
 
 .weather-inner,
 .emotion-inner {
-    background-color: rgb(203, 92, 203);
+    background-color: #9575cd;
 }
 
 .weather-selection:hover,
 .emotion-selection:hover {
-    background: #EBEFF2;
+    background: #9575cd;
 }
 
 .weather-selection:hover .weather-option,
@@ -105,12 +100,12 @@
 
 .weather-selection:hover .weather-inner,
 .emotion-selection:hover .emotion-inner {
-    background-color: rgb(167, 75, 167);
+    background-color: #9575cd;
 }
 
 .weather-selection:hover .weather-outer,
 .emotion-selection:hover .emotion-outer {
-    background-color: purple;
+    background-color: #65499c;
 }
 
 .weather-selection:hover .weather-cover,
@@ -124,11 +119,25 @@
 
 
 .datestyle{
-    background-color: rgb(167, 75, 167) ;
+    background-color: #65499c ;
+    min-height: 2.3em;
 }
 
-
-.datestyle input::placeholder,
-.datestyle input {
+.datestyle input::placeholder {
+    font-size: 1.0em;
     color: white;
 }
+
+.datestyle input {
+    width: 100px;
+    font-size: 0.8em;
+    color: white;
+    text-align: center;
+}
+
+.weather-outer .weather-icon,
+.emotion-outer .emotion-icon {
+    font-size: large;
+    vertical-align: bottom;
+}
+
