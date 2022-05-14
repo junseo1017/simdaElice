@@ -5,22 +5,28 @@ import "antd/dist/antd.min.css";
 import DiaryTopData from "./component/DiaryTopData.jsx";
 import DairyContent from "./component/diarycontent.js";
 import ImageUpload from "./component/ImageUpload.js";
+import CalendarModal from "./component/CalendarModal.jsx";
 
 const { TabPane } = Tabs;
 
 
 const Diary = memo(() => {
     const [topData, setTopData] = useState({});
+    const [clickTapOne, setClickTapOne] = useState(false);
+    const wholeData = useMemo(() => requestData(), []);
+    
+    const onClickTap = (e) => {
+        if (e === '1') {
+            setClickTapOne(true);
+        }
+    }
 
     return (
         <>
             <Tabs tabPosition={'right'} >
                 <TabPane tab="Calender" key="1">
                     <DiaryTopData setTopData={setTopData} />
-                    {/* {clickPage ?
-                        <DiaryTopData />
-                        : <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onChangePage} />
-                    } */}
+                    <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne}/>
                     <ImageUpload />
                     <DairyContent />
                 </TabPane>
