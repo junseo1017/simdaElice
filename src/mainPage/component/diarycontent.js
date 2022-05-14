@@ -1,27 +1,27 @@
-import React, { useState, memo } from "react";
+import React, {useState, memo, useCallback, useRef} from 'react';
 
-import "./layout/diarycontent.css";
+import './layout/diarycontent.css';
 
-const DairyContent = memo(() => {
-  const [diaryContent, setDiaryContent] = useState("");
+const DiaryContent = memo((props) => {
   const diaryChange = (e) => {
-    setDiaryContent(e.target.value);
-    console.log(diaryContent);
+    props.setDiaryContent(e.target.value);
   };
+  const onSubmitBtn = () => {
+    props.onClick();
+  };
+
   return (
     <>
-      <div className="paper">
-        <div className="paper-content">
-          <textarea
-            onChange={diaryChange}
-            defaultValue="일기를 입력해주세요 :)"
-            autoFocus
-          ></textarea>
+      <div className='paper'>
+        <div className='paper-content'>
+          <textarea onChange={diaryChange} placeholder='일기를 입력해주세요!' autoFocus></textarea>
         </div>
-        <button className="submitButton">작성완료</button>
+        <button onClick={onSubmitBtn} className='submitButton'>
+          작성완료
+        </button>
       </div>
     </>
   );
 });
 
-export default DairyContent;
+export default DiaryContent;
