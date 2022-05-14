@@ -1,49 +1,28 @@
-import React, { useReducer, useState } from "react";
-import { DatePicker, Space } from "antd";
-import "antd/dist/antd.min.css";
-import axios from "axios";
-
+import React, { memo, useReducer } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from 'axios';
 import {
-  faFaceLaughBeam,
-  faFaceAngry,
-  faFaceSadCry,
-  faFaceGrinHearts,
-  faFaceTired,
-  faFaceFrown,
-  faSun,
-} from "@fortawesome/free-regular-svg-icons";
-import {
-  faCloud,
-  faWind,
-  faCloudShowersHeavy,
-  faCloudBolt,
-  faSnowflake,
-} from "@fortawesome/free-solid-svg-icons";
-
-import "./layout/TopData.css";
+  faSun, faCloud, faWind, faCloudShowersHeavy, faCloudBolt, faSnowflake,
+  faFaceSmileBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry
+} from '@fortawesome/free-solid-svg-icons';
+import { DatePicker, Space } from 'antd';
+import 'antd/dist/antd.min.css';
+import './layout/TopData.css';
 import WeatherOption from "./topContent/WeatherOption";
 import EmotionOption from "./topContent/EmotionOption";
-// import './datePickerStyle.css';
 
-// axios({
-// 	method: 'get',
-// 	url: '/test?name=veneas'
-// })
-// .then(response => {
-//     console.log(response);
-// })
-// .catch(err => {
-//     console.log(err);
-// })
+
 
 const initialState = {
-  weather: "",
-  emotion: "",
-};
+  date: '',
+  weather: '',
+  emotion: '',
+}
 
-export const SET_WEATHER = "SET_WEATHER";
-export const SET_EMOTION = "SET_EMOTION";
+export const SET_WEATHER = 'SET_WEATHER';
+export const SET_EMOTION = 'SET_EMOTION';
+export const SET_DATE = 'SET_DATE';
+export const GET_DATA = 'GET_DATA';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -51,100 +30,97 @@ const reducer = (state, action) => {
       return {
         ...state,
         weather: action.weatherValue,
-      };
+      }
     }
     case SET_EMOTION: {
       return {
         ...state,
         emotion: action.emotionValue,
-      };
+      }
+    }
+    case SET_DATE: {
+      return {
+        ...state,
+        date: action.dateValue,
+      }
+    }
+    case GET_DATA: {
+      return {
+        ...state,
+        date: action.dateValue,
+        weather: action.weatherValue,
+        emotion: action.emotionValue,
+      }
     }
     default:
       return state;
   }
-};
+}
 
-const DiaryTopData = () => {
-  // const [weather, setWeather] = useState(null);
-  // const [emotionOptionShown, setEmotionOptionShown] = useState(true);
-  // const [emotion, setEmotion] = useState(null);
+const DiaryTopData = memo(({ setTopData }) => {
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const { weather, emotion } = state;
-  // const [weatherOptionShown, setWeatherOptionShown] = useState(true);
 
-  const weatherArray = [
-    faSun,
-    faCloud,
-    faWind,
-    faCloudShowersHeavy,
-    faSnowflake,
-    faCloudBolt,
-  ];
-  const emotionArray = [
-    faFaceLaughBeam,
-    faFaceGrinHearts,
-    faFaceSadCry,
-    faFaceTired,
-    faFaceFrown,
-    faFaceAngry,
-  ];
-
-  /*
-
-        날짜 데이터 =>  날짜 문자열
-
-        weather => 맑음, 흐림, 바람, 비옴, 눈옴, 천둥
-        데이터 표현:   0 ,   1,    2,    3,    4,   5 
-
-        emotion => 기쁨,  신남,  슬픔,  피곤함,  찡그림,  분노
-             표현:   0 ,     1,     2,      3,      4,    5   
+  const weatherArray = [faSun, faCloud, faWind, faCloudShowersHeavy, faSnowflake, faCloudBolt];
+  const emotionArray = [faFaceSmileBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry];
 
 
-    */
+  const onChangePage = (e) => {
+    const selectDate = e._d.toString().split(' ');
+    const datePack = [selectDate[3], selectDate[1], selectDate[2]];
 
-  // useReducer를 이용해서 자식 컴포넌트에서 state 값을 변경한 것을 적용시켜야함.
+    setTopData({
+      date: datePack,
+      weather,
+      emotion,
+    });
+  };
+
 
   return (
     <>
       <Space align="center">
         <DatePicker
-          showTime={false}
-          showNow={true}
-          format={" YYYY/ MM/ DD"}
-          bordered={true}
-          className="datestyle"
+          showTime={false} showNow={true} format={' YYYY/ MM/ DD'} bordered={true}
+          className="datestyle" onChange={onChangePage}
         />
-        <div className="weather-selection">
+        <div className="weather-selection" >
           <WeatherOption weather={weather} dispatch={dispatch} />
           <div className="weather-cover">
-            {weather ? (
+            {weather ?
               <div className="weather-outer">
-                오늘 날씨
-                <FontAwesomeIcon icon={weatherArray[weather]} />!
+                날씨는&emsp;
+                <span className="weather-icon">
+                  <FontAwesomeIcon icon={weatherArray[weather]} />
+                </span>&ensp;!
               </div>
-            ) : (
-              <div className="weather-outer">날씨를 입력해주세요!</div>
-            )}
+              : <div className="weather-outer">날씨를 입력해주세요!</div>
+            }
             <div className="weather-inner"></div>
           </div>
         </div>
         <div className="emotion-selection">
           <EmotionOption emotion={emotion} dispatch={dispatch} />
           <div className="emotion-cover">
-            {emotion ? (
+            {emotion ?
               <div className="emotion-outer">
-                오늘 기분
-                <FontAwesomeIcon icon={emotionArray[emotion]} />!
+                기분은&emsp;
+                <span className="emotion-icon">
+                  <FontAwesomeIcon icon={emotionArray[emotion]} />
+                </span>&ensp;!
               </div>
-            ) : (
-              <div className="emotion-outer">기분을 입력해주세요!</div>
-            )}
+              : <div className="emotion-outer">기분을 입력해주세요!</div>
+            }
             <div className="emotion-inner"></div>
           </div>
         </div>
       </Space>
     </>
-  );
-};
+  )
+
+})
+
+
 
 export default DiaryTopData;
