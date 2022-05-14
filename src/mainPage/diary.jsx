@@ -93,7 +93,7 @@ const Diary = () => {
   };
   const onClick = () => {
     postMainPageSubmit();
-    console.log(listData.current);
+    // console.log(listData.current);
     // 스테이트 초기화 시켜야함
   };
 
