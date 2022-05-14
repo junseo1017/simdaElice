@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
-import { Tabs, Calendar, Badge } from "antd";
-import "antd/dist/antd.min.css";
+import React, {useState, useRef, useEffect} from 'react';
+import {Tabs, Calendar, Badge} from 'antd';
+import 'antd/dist/antd.min.css';
 
-import DiaryTopData from "./component/DiaryTopData.jsx";
-import DairyContent from "./component/diarycontent.js";
-import ImageUpload from "./component/ImageUpload.js";
+import DiaryTopData from './component/DiaryTopData.jsx';
+import DiaryContent from './component/diarycontent.js';
+import ImageUpload from './component/ImageUpload.js';
+import axios from 'axios';
+import DiaryList from './component/diaryList.js';
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 function getListData(value) {
   let listData;
@@ -22,7 +24,7 @@ function dateCellRender(value) {
   const listData = getListData(value);
   // console.log(listData);
   return (
-    <ul className="">
+    <ul className=''>
       {listData.map((item) => (
         <li key={item.content}>
           <Badge status={item.type} text={item.content} />
@@ -56,31 +58,57 @@ function monthCellRender(value) {
 
 const Diary = () => {
   const [clickPage, setClickPage] = useState(false);
+  const [diaryContent, setDiaryContent] = useState('');
+  const listData = useRef();
 
+  useEffect(() => {
+    getDiaryList();
+  }, [listData]);
+
+  async function getDiaryList() {
+    try {
+      const res = await axios.get('http://14.35.100.207:3000/diarys/info');
+      listData.current = res.data.diaryInfoList;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async function postMainPageSubmit() {
+    // try {
+    //   const res = await axios.post('http://14.35.100.207:3000/diarys/regist', {
+    //     diary_seq:0,
+    //     diary_reg_date: `${state.date[0]-${state.date[1]}-${state.date[2]}`,
+    //     diary_weather_type: state.weather,
+    //     diary_feel_type: state.emotion,
+    //     diary_wakeup_time: '00:00:00',
+    //     diary_sleep_time: '00:00:00',
+    //     diary_content: diaryContent,
+    //   });
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  }
   const onChangePage = (e) => {
-    console.log(e);
     setClickPage((prev) => !prev);
+  };
+  const onClick = () => {
+    postMainPageSubmit();
+    console.log(listData.current);
+    // 스테이트 초기화 시켜야함
   };
 
   return (
     <>
-      <Tabs tabPosition={"right"} onTabClick={onChangePage}>
-        <TabPane tab="Calender" key="1">
-          {clickPage ? (
-            <DiaryTopData />
-          ) : (
-            <Calendar
-              dateCellRender={dateCellRender}
-              monthCellRender={monthCellRender}
-              onSelect={onChangePage}
-            />
-          )}
+      <Tabs tabPosition={'right'} onTabClick={onChangePage}>
+        <TabPane tab='Calender' key='1'>
+          {clickPage ? <DiaryTopData /> : <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onChangePage} />}
           <ImageUpload />
-          <DairyContent />
+          <DiaryContent setDiaryContent={setDiaryContent} onClick={onClick} />
         </TabPane>
-
-        <TabPane tab="Diary List" key="2"></TabPane>
-        <TabPane tab="Set Up" key="3"></TabPane>
+        <TabPane tab='Diary List' key='2'>
+          <DiaryList listData={listData} />
+        </TabPane>
+        <TabPane tab='Set Up' key='3'></TabPane>
       </Tabs>
     </>
   );
