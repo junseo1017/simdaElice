@@ -14,6 +14,8 @@ const {TabPane} = Tabs;
 
 const Diary = memo(() => {
   const [topData, setTopData] = useState({});
+  // ImageUpload에 props로 보낼 state와 setState
+  const [images, setImages] = useState([])
   const [clickTapOne, setClickTapOne] = useState(false);
   const [diaryContent, setDiaryContent] = useState('');
   const listData = useRef();
@@ -64,7 +66,8 @@ const Diary = memo(() => {
         <TabPane tab='Calender' key='1'>
           <DiaryTopData setTopData={setTopData} />
           <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne} />
-
+          <ImageUpload images={images} onUploadImage={setImages}/>
+          <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne} />
           <DairyContent />
         </TabPane>
         <TabPane tab='Diary List' key='2'>
