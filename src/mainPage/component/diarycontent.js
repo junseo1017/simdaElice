@@ -1,4 +1,4 @@
-import React, {useState, memo, useCallback, useRef} from 'react';
+import React, {memo} from 'react';
 
 import './layout/diarycontent.css';
 

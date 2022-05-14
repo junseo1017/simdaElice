@@ -1,4 +1,4 @@
-import React, {useState, memo, useEffect, useCallback, useRef} from 'react';
+import React, {useState, memo, useEffect, useRef} from 'react';
 import {Modal, Button} from 'antd';
 
 import MapButton from './diaryListComponent/mapButton';
