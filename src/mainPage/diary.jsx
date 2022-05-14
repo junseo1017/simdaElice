@@ -57,6 +57,8 @@ function monthCellRender(value) {
 
 const Diary = memo(() => {
   const [topData, setTopData] = useState({});
+  // ImageUpload에 props로 보낼 state와 setState
+  const [images, setImages] = useState([])
   const [clickTapOne, setClickTapOne] = useState(false);
   //const wholeData = useMemo(() => requestData(), []);
   //return에           <ImageUpload /> 수정예정
@@ -74,7 +76,7 @@ const Diary = memo(() => {
             setclickValue={setClickTapOne}
             clickValue={clickTapOne}
           />
-
+          <ImageUpload images={images} onUploadImage={setImages}/>
           <DairyContent />
         </TabPane>
         <TabPane tab="Diary List" key="2"></TabPane>
