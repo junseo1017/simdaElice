@@ -10,54 +10,10 @@ import axios from 'axios';
 
 const {TabPane} = Tabs;
 
-function getListData(value) {
-  let listData;
-  // console.log(value.date());
-  switch (value.date()) {
-    default:
-      break;
-  }
-  return listData || [];
-}
-
-function dateCellRender(value) {
-  const listData = getListData(value);
-  // console.log(listData);
-  return (
-    <ul className=''>
-      {listData.map((item) => (
-        <li key={item.content}>
-          <Badge status={item.type} text={item.content} />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function getMonthData(value) {
-  if (value.month() === 8) {
-    return 1394;
-  }
-}
-
-function monthCellRender(value) {
-  const num = getMonthData(value);
-  return num ? (
-    <div>
-      <section>{num}</section>
-      <span>Backlog number</span>
-    </div>
-  ) : null;
-}
-
-/*
-      캘린더를 클릭하면 모달처럼 달력이 뜨거나 화면을 채워서 보여줌.
-      캘린더 날짜를 클릭하면 해당 날짜 일기장을 화면에 보여줌
-      Calendar API에서 onSelect 속성을 이용해서 구현예정
-*/
-
 const Diary = memo(() => {
   const [topData, setTopData] = useState({});
+  // ImageUpload에 props로 보낼 state와 setState
+  const [images, setImages] = useState([]);
   const [clickTapOne, setClickTapOne] = useState(false);
   const [diaryContent, setDiaryContent] = useState('');
   const listData = useRef();
@@ -105,9 +61,11 @@ const Diary = memo(() => {
   };
   return (
     <>
-      <Tabs tabPosition={'right'}>
+      <Tabs tabPosition={'right'} onTabClick={onClickTap}>
         <TabPane tab='Calender' key='1'>
           <DiaryTopData setTopData={setTopData} />
+          <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne} />
+          <ImageUpload images={images} onUploadImage={setImages} />
           <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne} />
           <DiaryContent setDiaryContent={setDiaryContent} onClick={onClick} />
         </TabPane>
