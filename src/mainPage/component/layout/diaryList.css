@@ -1,0 +1,7 @@
+.diaryListContainer {
+  display: flex;
+  flex-direction: column;
+}
+.diaryListButton {
+  width: 100px;
+}
