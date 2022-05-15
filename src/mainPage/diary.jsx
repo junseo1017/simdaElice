@@ -17,7 +17,9 @@ const Diary = memo(() => {
   // ImageUpload에 props로 보낼 state와 setState
   const [images, setImages] = useState([]);
   const [clickTapOne, setClickTapOne] = useState(false);
-  const [diaryContent, setDiaryContent] = useState("");
+  const [diaryContent, setDiaryContent] = useState('');
+
+
   const listData = useRef();
 
   //const wholeData = useMemo(() => requestData(), []);
@@ -50,11 +52,14 @@ const Diary = memo(() => {
     //     diary_wakeup_time: '00:00:00',
     //     diary_sleep_time: '00:00:00',
     //     diary_content: diaryContent,
+    //     diary_img:image[0].data_url,
     //   });
     // } catch (err) {
     //   console.error(err);
     // }
+    console.log('send file');
   }
+
   const onClick = () => {
     if (window.confirm("저장하시겠습니까?")) {
       postMainPageSubmit();
@@ -76,7 +81,7 @@ const Diary = memo(() => {
             setclickValue={setClickTapOne}
             clickValue={clickTapOne}
           />
-          <DairyContent onClick={onClick} />
+          <DiaryContent setDiaryContent={setDiaryContent} onClick={onClick} />
         </TabPane>
         <TabPane tab="Diary List" key="2">
           <DiaryList listData={listData} />
