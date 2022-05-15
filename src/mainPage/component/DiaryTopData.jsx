@@ -10,18 +10,16 @@ import './layout/TopData.css';
 import WeatherOption from "./topContent/WeatherOption";
 import EmotionOption from "./topContent/EmotionOption";
 
-
-
 const initialState = {
-  date: '',
-  weather: '',
-  emotion: '',
-}
+  date: "",
+  weather: "",
+  emotion: "",
+};
 
-export const SET_WEATHER = 'SET_WEATHER';
-export const SET_EMOTION = 'SET_EMOTION';
-export const SET_DATE = 'SET_DATE';
-export const GET_DATA = 'GET_DATA';
+export const SET_WEATHER = "SET_WEATHER";
+export const SET_EMOTION = "SET_EMOTION";
+export const SET_DATE = "SET_DATE";
+export const GET_DATA = "GET_DATA";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -29,19 +27,19 @@ const reducer = (state, action) => {
       return {
         ...state,
         weather: action.weatherValue,
-      }
+      };
     }
     case SET_EMOTION: {
       return {
         ...state,
         emotion: action.emotionValue,
-      }
+      };
     }
     case SET_DATE: {
       return {
         ...state,
         date: action.dateValue,
-      }
+      };
     }
     case GET_DATA: {
       return {
@@ -49,24 +47,22 @@ const reducer = (state, action) => {
         date: action.dateValue,
         weather: action.weatherValue,
         emotion: action.emotionValue,
-      }
+      };
     }
     default:
       return state;
   }
-}
+};
 
 const DiaryTopData = memo(({ setTopData }) => {
-
   const [state, dispatch] = useReducer(reducer, initialState);
   const { weather, emotion } = state;
 
   const weatherArray = [faSun, faCloud, faCloudShowersHeavy, faCloudBolt, faWind, faSnowflake];
   const emotionArray = [faFaceSadCry, faFaceKiss, faFaceSmileBeam, faFaceLaughSquint, faFaceAngry, faFaceTired];
 
-
   const onChangePage = (e) => {
-    const selectDate = e._d.toString().split(' ');
+    const selectDate = e._d.toString().split(" ");
     const datePack = [selectDate[3], selectDate[1], selectDate[2]];
 
     setTopData({
@@ -76,7 +72,6 @@ const DiaryTopData = memo(({ setTopData }) => {
     });
   };
 
-
   return (
     <>
       <Space align="center">
@@ -84,15 +79,16 @@ const DiaryTopData = memo(({ setTopData }) => {
           showTime={false} showNow={true} format={' YYYY  /  MM  /  DD'} bordered={true}
           className="datestyle" onChange={onChangePage}
         />
-        <div className="weather-selection" >
+        <div className="weather-selection">
           <WeatherOption weather={weather} dispatch={dispatch} />
           <div className="weather-cover">
-            {weather ?
+            {weather ? (
               <div className="weather-outer">
                 날씨는&emsp;
                 <span className="weather-icon">
                   <FontAwesomeIcon icon={weatherArray[weather]} />
-                </span>&ensp;!
+                </span>
+                &ensp;!
               </div>
               : <div className="weather-outer">날씨를 선택해주세요!</div>
             }
@@ -102,12 +98,13 @@ const DiaryTopData = memo(({ setTopData }) => {
         <div className="emotion-selection">
           <EmotionOption emotion={emotion} dispatch={dispatch} />
           <div className="emotion-cover">
-            {emotion ?
+            {emotion ? (
               <div className="emotion-outer">
                 기분은&emsp;
                 <span className="emotion-icon">
                   <FontAwesomeIcon icon={emotionArray[emotion]} />
-                </span>&ensp;!
+                </span>
+                &ensp;!
               </div>
               : <div className="emotion-outer">기분을 선택해주세요!</div>
             }
@@ -116,10 +113,7 @@ const DiaryTopData = memo(({ setTopData }) => {
         </div>
       </Space>
     </>
-  )
-
-})
-
-
+  );
+});
 
 export default DiaryTopData;

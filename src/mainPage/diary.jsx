@@ -1,3 +1,4 @@
+
 import React, { useState, memo, useEffect, useCallback, useRef } from 'react';
 import { Tabs } from 'antd';
 import 'antd/dist/antd.min.css';
@@ -9,8 +10,9 @@ import DiaryList from './component/diaryList.js';
 import axios from 'axios';
 
 const { TabPane } = Tabs;
+import "./component/layout/diary.css";
 
-
+const { TabPane } = Tabs;
 
 const Diary = memo(() => {
     const [topData, setTopData] = useState({});
@@ -32,6 +34,7 @@ const Diary = memo(() => {
         getDiaryList();
     }, [listData]);
 
+  
     const getDiaryList = useCallback(async () => {
         try {
             const res = await axios.get('http://14.35.100.207:3000/diarys/info');
@@ -58,17 +61,20 @@ const Diary = memo(() => {
         // }
     }
     const onClick = () => {
-        postMainPageSubmit();
-        console.log(listData.current);
-        // 스테이트 초기화 시켜야함
-    };
+    if (window.confirm("저장하시겠습니까?")) {
+      postMainPageSubmit();
+      console.log(listData.current);
+      window.location.reload();
+    }
+  };
     
     return (
         <>
             <Tabs tabPosition={'right'} onTabClick={onClickTap} activeKey={currentTap}>
                 <TabPane tab='Diary' key='1'>
                     <DiaryTopData setTopData={setTopData} />
-                    <DairyContent />
+                    <ImageUpload images={images} onUploadImage={setImages} />
+                    <DairyContent onClick={onClick} />
                 </TabPane>
                 <TabPane tab='Calender' key='2'>
                     <CalendarModal setclickModal={setclickModal} clickModal={clickModal} setCurrentTap={setCurrentTap} getDiaryList={getDiaryList} />

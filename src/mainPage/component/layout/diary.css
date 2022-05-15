@@ -1,3 +1,52 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-family: "Fjalla One";
+}
+
+.ant-tabs-content {
+  width: 60vw;
+  height: 80vh;
+  background: #e9e6f0;
+  border: 2px solid black;
+  box-shadow: 5px 5px 1px #9575cd, 5px 5px 1px 2px black;
+  overflow: hidden;
+  display: flex;
+  padding: 0;
+}
+
+.ant-tabs-tabpane,
+ant-tabs-tabpane-active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.ant-tabs-content button {
+  height: 30px;
+  background-color: #65499c;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  margin: 2px 3px;
+  font-size: 10px;
+  font-family: "Elice Digital Baeum", sans-serif;
+}
+.ant-tabs-content button:hover {
+  background-color: #9575cd;
+}
+/* Topdata */
 .weather-selection,
 .weather-selection *,
 .emotion-selection,
@@ -16,14 +65,15 @@
 
 .weather-selection,
 .emotion-selection {
-    position: relative;
-    border-radius: 10px;
-    width: 150px;
-    min-height: 2.3em;
-    background: #A9ADB6;
-    border-radius: 0.25em;
-    perspective: 300;
-    box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 10px;
+  width: 150px;
+  min-height: 2.3em;
+  background: #a9adb6;
+  border-radius: 0.25em;
+  perspective: 300;
+  box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
 }
 
 .weather-selection .weather-option,
@@ -120,10 +170,9 @@
   transition-timing-function: cubic-bezier(0.2, 0.7, 0.1, 1.1);
 }
 
-
 .datestyle {
-    background-color: #65499c;
-    min-height: 2.3em;
+  background-color: #65499c;
+  min-height: 2.3em;
 }
 
 .datestyle input::placeholder {
@@ -138,39 +187,76 @@
   text-align: center;
 }
 
-.datestyle .ant-picker-clear, .ant-modal-body,
-.ant-picker-date-panel, .ant-modal-footer {
-    background-color: #9575cd;
-}
-
-.ant-picker-calendar-header .ant-select .ant-select-selector,
-.ant-select-selection-item, .rc-virtual-list-holder-inner, .ant-radio-button,
-.ant-modal-footer .ant-btn-default {
-    background-color: #65499c;
-}
-
-.ant-radio-group .ant-radio-button-wrapper:nth-child(2) {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-}
-
-.ant-modal-body .ant-picker-calendar-header {
-    position: relative;
-    right: 45px;
-}
-
-.ant-modal-content .ant-modal-close-x:hover {
-    background-color: #65499c;
-}
-
-
 .weather-outer .weather-icon,
 .emotion-outer .emotion-icon {
-    font-size: large;
-    vertical-align: bottom;
+  font-size: large;
+  vertical-align: bottom;
 }
 
+/* content */
+
+.paper {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 80%;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+/* .paper:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
+  background-size: 30px 30px;
+  border-right: 3px solid #d44147;
+  box-sizing: border-box;
+} */
+
+.paper-content {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  bottom: 50px;
+  left: 15px;
+  background: linear-gradient(transparent, transparent 28px, #65499c 28px);
+  background-size: 30px 30px;
+}
+
+.paper-content textarea {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  line-height: 30px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: black;
+  /* font-family: 'Handlee', cursive; */
+  /* font-weight: bold; */
+  font-size: 18px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.submitButton {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+/*image*/
+.image-item {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.image-item__btn-wrapper {
+  text-align: left;
+}

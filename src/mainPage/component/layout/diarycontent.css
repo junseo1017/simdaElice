@@ -4,6 +4,7 @@ body {
 
 .paper {
   position: relative;
+  bottom: 0;
   width: 90%;
   max-width: 800px;
   min-width: 400px;
