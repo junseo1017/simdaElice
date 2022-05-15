@@ -1,6 +1,7 @@
 import React, { useState, memo, useCallback, useRef } from "react";
 import { Button } from "antd";
-//import './layout/diarycontent.css';
+
+import './layout/diarycontent.css';
 
 const DiaryContent = memo((props) => {
   const diaryChange = (e) => {

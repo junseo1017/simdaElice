@@ -96,6 +96,7 @@ const Diary = memo(() => {
       window.location.reload();
     }
   };
+  
     
     return (
         <>
