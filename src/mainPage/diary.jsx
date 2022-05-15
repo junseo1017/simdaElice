@@ -16,6 +16,7 @@ const Diary = memo(() => {
   const [images, setImages] = useState([]);
   const [clickTapOne, setClickTapOne] = useState(false);
   const [diaryContent, setDiaryContent] = useState('');
+
   const listData = useRef();
 
   //const wholeData = useMemo(() => requestData(), []);
@@ -48,15 +49,18 @@ const Diary = memo(() => {
     //     diary_wakeup_time: '00:00:00',
     //     diary_sleep_time: '00:00:00',
     //     diary_content: diaryContent,
+    //     diary_img:image[0].data_url,
     //   });
     // } catch (err) {
     //   console.error(err);
     // }
     console.log('send file');
   }
+
   const onClick = () => {
     postMainPageSubmit();
     console.log(listData.current);
+    console.log(images);
     // 스테이트 초기화 시켜야함
   };
   return (
