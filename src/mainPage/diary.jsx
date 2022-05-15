@@ -96,7 +96,7 @@ const Diary = memo(() => {
       window.location.reload();
     }
   };
-  
+
     
     return (
         <>
@@ -104,7 +104,7 @@ const Diary = memo(() => {
                 <TabPane tab='Diary' key='1'>
                     <DiaryTopData setTopData={setTopData} />
                     <ImageUpload images={images} onUploadImage={setImages} />
-                    <DiaryContent setDiaryContent={setDiaryContent} onClick={onClick} />
+                    <DairyContent setDiaryContent={setDiaryContent} onClick={onClick} />
                 </TabPane>
                 <TabPane tab='Calender' key='2'>
                     <CalendarModal setclickModal={setclickModal} clickModal={clickModal} setCurrentTap={setCurrentTap} getDiaryList={getDiaryList} />

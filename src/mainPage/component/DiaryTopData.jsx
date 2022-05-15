@@ -82,7 +82,7 @@ const DiaryTopData = memo(({ setTopData }) => {
         <div className="weather-selection">
           <WeatherOption weather={weather} dispatch={dispatch} />
           <div className="weather-cover">
-            {weather ? (
+            {weather ? 
               <div className="weather-outer">
                 날씨는&emsp;
                 <span className="weather-icon">
@@ -98,7 +98,7 @@ const DiaryTopData = memo(({ setTopData }) => {
         <div className="emotion-selection">
           <EmotionOption emotion={emotion} dispatch={dispatch} />
           <div className="emotion-cover">
-            {emotion ? (
+            {emotion ? 
               <div className="emotion-outer">
                 기분은&emsp;
                 <span className="emotion-icon">
