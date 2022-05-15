@@ -1,4 +1,3 @@
-
 @import url(//font.elice.io/EliceDigitalBaeum.css);
 
 button {
@@ -9,7 +8,7 @@ button {
   border: 0;
   margin: 2px 3px;
   font-size: 10px;
-  font-family: "Elice Digital Baeum",sans-serif;
+  font-family: "Elice Digital Baeum", sans-serif;
 }
 
 button:hover {
