@@ -1,9 +1,8 @@
 import React, { memo, useReducer } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from 'axios';
 import {
   faSun, faCloud, faWind, faCloudShowersHeavy, faCloudBolt, faSnowflake,
-  faFaceSmileBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry
+  faFaceSmileBeam, faFaceLaughSquint, faFaceSadCry, faFaceTired, faFaceKiss, faFaceAngry
 } from '@fortawesome/free-solid-svg-icons';
 import { DatePicker, Space } from 'antd';
 import 'antd/dist/antd.min.css';
@@ -62,8 +61,8 @@ const DiaryTopData = memo(({ setTopData }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { weather, emotion } = state;
 
-  const weatherArray = [faSun, faCloud, faWind, faCloudShowersHeavy, faSnowflake, faCloudBolt];
-  const emotionArray = [faFaceSmileBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry];
+  const weatherArray = [faSun, faCloud, faCloudShowersHeavy, faCloudBolt, faWind, faSnowflake];
+  const emotionArray = [faFaceSadCry, faFaceKiss, faFaceSmileBeam, faFaceLaughSquint, faFaceAngry, faFaceTired];
 
 
   const onChangePage = (e) => {
@@ -82,7 +81,7 @@ const DiaryTopData = memo(({ setTopData }) => {
     <>
       <Space align="center">
         <DatePicker
-          showTime={false} showNow={true} format={' YYYY/ MM/ DD'} bordered={true}
+          showTime={false} showNow={true} format={' YYYY  /  MM  /  DD'} bordered={true}
           className="datestyle" onChange={onChangePage}
         />
         <div className="weather-selection" >
@@ -95,7 +94,7 @@ const DiaryTopData = memo(({ setTopData }) => {
                   <FontAwesomeIcon icon={weatherArray[weather]} />
                 </span>&ensp;!
               </div>
-              : <div className="weather-outer">날씨를 입력해주세요!</div>
+              : <div className="weather-outer">날씨를 선택해주세요!</div>
             }
             <div className="weather-inner"></div>
           </div>
@@ -110,7 +109,7 @@ const DiaryTopData = memo(({ setTopData }) => {
                   <FontAwesomeIcon icon={emotionArray[emotion]} />
                 </span>&ensp;!
               </div>
-              : <div className="emotion-outer">기분을 입력해주세요!</div>
+              : <div className="emotion-outer">기분을 선택해주세요!</div>
             }
             <div className="emotion-inner"></div>
           </div>

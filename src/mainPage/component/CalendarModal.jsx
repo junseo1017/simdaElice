@@ -1,47 +1,80 @@
-import { memo } from "react";
+import { memo, useState, useEffect, useMemo } from "react";
 import { Modal, Calendar, Badge } from "antd";
-import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faSun, faCloud, faWind, faCloudShowersHeavy, faCloudBolt, faSnowflake,
+    faFaceSmileBeam, faFaceLaughSquint, faFaceSadCry, faFaceTired, faFaceKiss, faFaceAngry
+} from '@fortawesome/free-solid-svg-icons';
+
+const emotionArray = [faFaceSadCry, faFaceKiss, faFaceSmileBeam, faFaceLaughSquint, faFaceAngry, faFaceTired];
+const weatherArray = [faSun, faCloud, faCloudShowersHeavy, faCloudBolt, faWind, faSnowflake];
 
 
 
+const CalendarModal = memo(({ setclickModal, clickModal, setCurrentTap, getDiaryList }) => {
 
+    const serverDataList = useMemo(() => getDiaryList(), []);
+    const [serverData, setServerData] = useState([]);
 
-const CalendarModal = memo(({ setclickValue, clickValue }) => {
+    // 서버에 있는 데이터 가져오기 (pending이 일어나며 발생, fulfill 일어나며 실행되서 두 번 발생)
+    useEffect(() => {
+        serverDataList.then(res => {
+            res.map((data) => {
+                const temp = {
+                    date: data.diary_reg_date,
+                    weather: data.diary_weather_type,
+                    emotion: data.diary_feel_type,
+                };
+                setServerData((prev) => [...prev, temp]);
+            });
+        })
+    }, [serverDataList])
 
+/*
 
-    const handleCancel = () => {
-        setclickValue(false);
-    }
+    // 렌더링 횟수 확인용
+    console.log(serverData, serverDataList);
+    console.log('확인');
 
-    const handleOK = (e) => {
-    }
+*/
+
 
     function getListData(value) {
-
-        // 서버에 value.date()같은 날짜 데이터를 보내서  
-        // 데이터를 받아온 상황 가정
-
-        const [date, weather, emotion] = ['2022-5-4', 2, 3];
-        let listData;
-        listData = [
-            { type: 'success', data: date },
-            { type: 'warning', data: weather },
-            { type: 'error', data: emotion },
-        ];
-        return listData || [];
+        const getData = serverData.find((data) => {
+            return data.date.substring(0, 10) ===
+                value.utc().format('YYYY-MM-DD')
+        })
+        return getData || {};
     }
 
     function dateCellRender(value) {
         const listData = getListData(value);
         return (
-            <ul>
-                {listData.map(item => (
-                    <li key={item.data + item.type}>
-                        <Badge status={item.type} text={item.data} />
+            Object.keys(listData).length ?
+                <ul>
+                    <li>
+                        <Badge.Ribbon text="그 날짜의 계획">
+                        </Badge.Ribbon>
                     </li>
-                ))}
-            </ul>
+                    <li>
+                        <FontAwesomeIcon icon={weatherArray[listData.weather]} />
+                    </li>
+                    <li>
+                        <FontAwesomeIcon icon={emotionArray[listData.emotion]} />
+                    </li>
+                </ul >
+                : <></>
         );
+    }
+
+    const handleCancel = () => {
+        setclickModal(false);
+        setCurrentTap('1');
+    }
+
+
+    const handleOK = (e) => {
+
     }
 
     const SelectDate = (e) => {
@@ -49,8 +82,8 @@ const CalendarModal = memo(({ setclickValue, clickValue }) => {
 
     return (
         <>
-            <Modal visible={clickValue} onCancel={handleCancel} onOk={handleOK} >
-                <Calendar mode="month" dateCellRender={dateCellRender} onSelect={SelectDate}  />
+            <Modal visible={clickModal} onCancel={handleCancel} onOk={handleOK} >
+                <Calendar mode="month" locale={'locale'} dateCellRender={dateCellRender} onSelect={SelectDate} style={ {backgroundColor: '#9575cd'}} />
             </Modal>
         </>
     )

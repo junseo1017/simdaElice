@@ -8,7 +8,7 @@ import { SET_WEATHER } from '../DiaryTopData';
 
 
 const WeatherOption = memo(({ weather, dispatch }) => {
-    const weatherArray = [faSun, faCloud, faWind, faCloudShowersHeavy, faSnowflake, faCloudBolt];
+    const weatherArray = [faSun, faCloud, faCloudShowersHeavy, faCloudBolt, faWind, faSnowflake];
 
     const onClickWeather = useCallback((e) => {
         e.preventDefault();

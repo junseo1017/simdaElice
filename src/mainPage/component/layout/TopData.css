@@ -1,4 +1,3 @@
-
 .weather-selection,
 .weather-selection *,
 .emotion-selection,
@@ -15,7 +14,8 @@
     transition-duration: 0.6s;
 }
 
-.weather-selection, .emotion-selection {
+.weather-selection,
+.emotion-selection {
     position: relative;
     border-radius: 10px;
     width: 150px;
@@ -118,8 +118,8 @@
 }
 
 
-.datestyle{
-    background-color: #65499c ;
+.datestyle {
+    background-color: #65499c;
     min-height: 2.3em;
 }
 
@@ -135,9 +135,38 @@
     text-align: center;
 }
 
+.datestyle .ant-picker-clear, .ant-modal-body,
+.ant-picker-date-panel, .ant-modal-footer {
+    background-color: #9575cd;
+}
+
+.ant-picker-calendar-header .ant-select .ant-select-selector,
+.ant-select-selection-item, .rc-virtual-list-holder-inner, .ant-radio-button,
+.ant-modal-footer .ant-btn-default {
+    background-color: #65499c;
+}
+
+.ant-radio-group .ant-radio-button-wrapper:nth-child(2) {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.ant-modal-body .ant-picker-calendar-header {
+    position: relative;
+    right: 45px;
+}
+
+.ant-modal-content .ant-modal-close-x:hover {
+    background-color: #65499c;
+}
+
+
 .weather-outer .weather-icon,
 .emotion-outer .emotion-icon {
     font-size: large;
     vertical-align: bottom;
 }
-

@@ -12,7 +12,7 @@ const DiaryList = memo(({listData}) => {
   const {current} = listData;
   const sortList = [...current].reverse(); // 다이어리 리스트 최신 작성 순의 배열
   useEffect(() => {
-    console.log(`listData:${current}`);
+    // console.log(`listData:${current}`);
   });
 
   const showModal = (e) => {
@@ -29,7 +29,7 @@ const DiaryList = memo(({listData}) => {
   };
 
   const handleCancel = () => {
-    console.log('Clicked cancel button');
+    // console.log('Clicked cancel button');
     setVisible(false);
   };
 

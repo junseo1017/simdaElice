@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceSmileBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry } from "@fortawesome/free-solid-svg-icons"
+import { faFaceSmileBeam, faFaceLaughSquint, faFaceSadCry, faFaceTired, faFaceKiss, faFaceAngry } from "@fortawesome/free-solid-svg-icons"
 import { Space } from 'antd';
 import { SET_EMOTION } from '../DiaryTopData';
 
 
 const EmotionOption = memo(({ emotion, dispatch }) => {
-    const emotionArray = [faFaceSmileBeam, faFaceGrinHearts, faFaceSadCry, faFaceTired, faFaceFrown, faFaceAngry];
+    const emotionArray = [faFaceSadCry, faFaceKiss, faFaceSmileBeam, faFaceLaughSquint, faFaceAngry, faFaceTired];
 
     const onClickEmotion = useCallback((e) => {
         e.preventDefault();
