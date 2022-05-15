@@ -49,10 +49,13 @@ const SignIn = () => {
         user_password: inputPWD,
       })
       .then((response) => {
-        goToMain();
+        if (response.data.errorCode === 0) {
+          goToMain();
+        } else {
+          alert("잘못된 정보입니다.");
+        }
       })
       .catch((error) => {
-        console.log("error");
         console.log(error);
       });
   };

@@ -1,7 +1,8 @@
 import ImageUploading from "react-images-uploading";
-import "./layout/ImageUpload.css";
+//import "./layout/ImageUpload.css";
+import { Button } from "antd";
 
-const ImageUpload = ({images, onUploadImage}) => {
+const ImageUpload = ({ images, onUploadImage }) => {
   const maxNumber = 1;
   const onChange = (imageList, addUpdateIndex) => {
     onUploadImage(imageList);
@@ -33,21 +34,21 @@ const ImageUpload = ({images, onUploadImage}) => {
         }) => (
           <div className="upload__image-wrapper">
             {images.length === 0 && (
-              <button
-                style={isDragging ? {color: "red"} : null}
+              <Button
+                style={isDragging ? { color: "red" } : null}
                 onClick={onImageUpload}
                 {...dragProps}
               >
                 사진 등록
-              </button>
+              </Button>
             )}
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
                 <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>
+                  <Button onClick={() => onImageUpdate(index)}>
                     사진 변경
-                  </button>
-                  <button onClick={() => onImageRemove(index)}>삭제</button>
+                  </Button>
+                  <Button onClick={() => onImageRemove(index)}>삭제</Button>
                 </div>
                 <img src={image.data_url} alt="" height="400" />
               </div>

@@ -1,14 +1,16 @@
-import React, {useState, memo, useEffect, useRef} from 'react';
-import {Tabs, Calendar, Badge} from 'antd';
-import 'antd/dist/antd.min.css';
-import DiaryTopData from './component/DiaryTopData.jsx';
-import DiaryContent from './component/diarycontent.js';
-import ImageUpload from './component/ImageUpload.js';
-import CalendarModal from './component/CalendarModal.jsx';
-import DiaryList from './component/diaryList.js';
-import axios from 'axios';
+import React, { useState, memo, useEffect, useRef } from "react";
+import axios from "axios";
+import { Tabs, Calendar, Badge } from "antd";
+import "antd/dist/antd.min.css";
 
-const {TabPane} = Tabs;
+import DiaryTopData from "./component/DiaryTopData.jsx";
+import DairyContent from "./component/diarycontent.js";
+import ImageUpload from "./component/ImageUpload.js";
+import CalendarModal from "./component/CalendarModal.jsx";
+import DiaryList from "./component/diaryList.js";
+import "./component/layout/diary.css";
+
+const { TabPane } = Tabs;
 
 const Diary = memo(() => {
   const [topData, setTopData] = useState({});
@@ -17,12 +19,13 @@ const Diary = memo(() => {
   const [clickTapOne, setClickTapOne] = useState(false);
   const [diaryContent, setDiaryContent] = useState('');
 
+
   const listData = useRef();
 
   //const wholeData = useMemo(() => requestData(), []);
   //return에           <ImageUpload /> 수정예정
   const onClickTap = (e) => {
-    if (e === '1') {
+    if (e === "1") {
       setClickTapOne(true);
     }
   };
@@ -33,7 +36,7 @@ const Diary = memo(() => {
 
   async function getDiaryList() {
     try {
-      const res = await axios.get('http://14.35.100.207:3000/diarys/info');
+      const res = await axios.get("http://14.35.100.207:3000/diarys/info");
       listData.current = res.data.diaryInfoList;
     } catch (err) {
       console.log(err);
@@ -58,25 +61,32 @@ const Diary = memo(() => {
   }
 
   const onClick = () => {
-    postMainPageSubmit();
-    console.log(listData.current);
-    console.log(images);
-    // 스테이트 초기화 시켜야함
+    if (window.confirm("저장하시겠습니까?")) {
+      postMainPageSubmit();
+      console.log(listData.current);
+      window.location.reload();
+    }
   };
   return (
     <>
-      <Tabs tabPosition={'right'} onTabClick={onClickTap}>
-        <TabPane tab='Calender' key='1'>
+      <Tabs tabPosition={"right"} onTabClick={onClickTap}>
+        <TabPane tab="Calender" key="1">
           <DiaryTopData setTopData={setTopData} />
-          <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne} />
+          <CalendarModal
+            setclickValue={setClickTapOne}
+            clickValue={clickTapOne}
+          />
           <ImageUpload images={images} onUploadImage={setImages} />
-          <CalendarModal setclickValue={setClickTapOne} clickValue={clickTapOne} />
+          <CalendarModal
+            setclickValue={setClickTapOne}
+            clickValue={clickTapOne}
+          />
           <DiaryContent setDiaryContent={setDiaryContent} onClick={onClick} />
         </TabPane>
-        <TabPane tab='Diary List' key='2'>
+        <TabPane tab="Diary List" key="2">
           <DiaryList listData={listData} />
         </TabPane>
-        <TabPane tab='Set Up' key='3'></TabPane>
+        <TabPane tab="Set Up" key="3"></TabPane>
       </Tabs>
     </>
   );
