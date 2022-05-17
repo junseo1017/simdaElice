@@ -60,7 +60,7 @@ const SignUp = () => {
         user_name: name,
         user_password: password,
       });
-      await navigate(`./diary.js`); // 로그인 페이지로 이동하면 됨
+      await navigate(`/`); // 로그인 페이지로 이동하면 됨
     } catch (err) {
       console.error(err);
     }
@@ -76,7 +76,7 @@ const SignUp = () => {
           type: 'EMAILCHECK',
           emailAlert: {message: '이메일 형식에 맞게 작성해주세요.', status: 'warning'},
         });
-    password.length >= 9
+    password.length >= 8
       ? dispatch({
           type: 'PASSWORDCHECK',
           passwordAlert: {message: '유효한 비밀번호입니다.', status: 'success'},
@@ -109,7 +109,7 @@ const SignUp = () => {
       passwordFunc();
       return;
     }
-    // getPost();
+    getPost();
     clickable.current = false;
   };
 

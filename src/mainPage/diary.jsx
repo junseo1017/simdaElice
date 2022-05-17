@@ -45,15 +45,15 @@ const Diary = memo(() => {
       console.log(err);
     }
   });
+
   async function postMainPageSubmit() {
     try {
       const res = await axios.post('http://14.35.100.207:3000/diarys/info/regist', {
-        diary_seq: 0,
+        user_seq: 17,
+        diary_seq: 5,
         diary_reg_date: `${topData.date[0]}-${topData.date[1]}-${topData.date[2]}`,
         diary_weather_type: topData.weather,
         diary_feel_type: topData.emotion,
-        diary_wakeup_time: '00:00:00',
-        diary_sleep_time: '00:00:00',
         diary_content: diaryContent,
       });
     } catch (err) {
