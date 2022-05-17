@@ -60,7 +60,7 @@ const SignUp = () => {
         user_name: name,
         user_password: password,
       });
-      // await navigate(`./diary.js`); // 로그인 페이지로 이동하면 됨
+      await navigate(`./diary.js`); // 로그인 페이지로 이동하면 됨
     } catch (err) {
       console.error(err);
     }
