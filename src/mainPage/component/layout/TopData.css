@@ -16,14 +16,14 @@
 
 .weather-selection,
 .emotion-selection {
-    position: relative;
-    border-radius: 10px;
-    width: 150px;
-    min-height: 2.3em;
-    background: #A9ADB6;
-    border-radius: 0.25em;
-    perspective: 300;
-    box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 10px;
+  width: 150px;
+  min-height: 2.3em;
+  background: #A9ADB6;
+  border-radius: 0.25em;
+  perspective: 300;
+  box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
 }
 
 .weather-selection .weather-option,
@@ -66,11 +66,9 @@
   height: 100%;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0.25em;
-  background-image: -webkit-linear-gradient(
-    top,
-    transparent 0%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background-image: -webkit-linear-gradient(top,
+      transparent 0%,
+      rgba(0, 0, 0, 0.1) 100%);
 }
 
 .weather-outer,
@@ -122,8 +120,8 @@
 
 
 .datestyle {
-    background-color: #65499c;
-    min-height: 2.3em;
+  background-color: #65499c;
+  min-height: 2.3em;
 }
 
 .datestyle input::placeholder {
@@ -138,39 +136,211 @@
   text-align: center;
 }
 
-.datestyle .ant-picker-clear, .ant-modal-body,
-.ant-picker-date-panel, .ant-modal-footer {
-    background-color: #9575cd;
+.datestyle .ant-picker-clear,
+.ant-modal-body,
+.ant-picker-date-panel,
+.ant-modal-footer {
+  background-color: #9c90c0;
+}
+
+.ant-space {
+  justify-content: flex-start;
+  position: relative;
+  top: 15px;
+  left: 10px;
+}
+
+.ant-space-item .ant-space {
+  top: 0;
+  left: 0;
+}
+
+.ant-modal-wrap {
+  overflow: hidden;
+  top: -93px;
+  /* scroll-behavior: no; */
+}
+
+.ant-modal {
+  width: 90vw !important;
+}
+
+.ant-picker-cell-inner {
+  background-color: #65499c;
+}
+
+.ant-picker-cell-in-view {
+  color: white;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date {
+  margin: 4px;
+  height: 10vh;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-content {
+  height: 50%;
+  overflow: hidden;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-content ul {
+  height: 100%;
+  margin: 0;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-content ul li {
+  height: 50%;
+  color: white;
 }
 
 .ant-picker-calendar-header .ant-select .ant-select-selector,
-.ant-select-selection-item, .rc-virtual-list-holder-inner, .ant-radio-button,
-.ant-modal-footer .ant-btn-default {
-    background-color: #65499c;
+.ant-select-selection-item,
+.rc-virtual-list-holder-inner,
+.ant-radio-button,
+.ant-modal-footer .ant-btn-default,
+.ant-modal-footer .ant-btn-primary,
+.ant-modal-content .ant-modal-close-x:hover {
+  background-color: #6f6fab;
 }
 
-.ant-radio-group .ant-radio-button-wrapper:nth-child(2) {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
+.ant-radio-group .ant-radio-button-wrapper:nth-child(2),
+label.ant-radio-button-wrapper .ant-radio-button,
+.ant-radio-button-wrapper-checked span,
+.ant-picker-calendar-mode-switch {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+
+.ant-picker-calendar {
+  background-color: #9c90c0 !important;
+  font-size: 1.2em;
+}
+
+.ant-picker-panel .ant-picker-footer {
+  background-color: #9c90c0;
+}
+
+.ant-picker-footer .ant-picker-today-btn {
+  color: white;
+}
+
+.ant-picker-footer .ant-picker-today-btn:hover {
+  color: #65499c;
+}
+
+/*
+
+Modal
+
+*/
+
+.ant-modal-content .ant-modal-close-x:hover {
+  border-radius: 20px;
+}
+
+.ant-modal-body {
+  height: 90vh;
+}
+
+.ant-modal-body .ant-select-selector {
+  border-radius: 10px !important;
+  border: 0 !important;
+  color: white;
+}
+
+.ant-select-dropdown {
+  background-color: #6f70a4;
+  text-align: center;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  width: 9em;
+  text-align: center;
+}
+
+.ant-modal-body,
+.ant-modal-content {
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date {
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #6f70a4;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-today {
+  border-top-color: #6f70a4;
+}
+
+.ant-modal-footer,
+.ant-modal-content {
+  border-top: 0;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.ant-modal-footer {
+  padding-right: 40px;
+}
+
+.ant-modal-footer .ant-btn-default,
+.ant-modal-footer .ant-btn-primary {
+  border: 0;
+  color: #fff;
+  width: 10%;
+  height: 45px;
+  position: relative;
+  bottom: 20px;
+  border-radius: 10px;
+}
+
+
+.ant-modal-footer .ant-btn-primary:hover,
+.ant-modal-footer .ant-btn-default:hover {
+  color: #b6b7d6;
 }
 
 .ant-modal-body .ant-picker-calendar-header {
-    position: relative;
-    right: 45px;
+  margin-right: 10%;
+  gap: 3%;
+  flex-direction: row;
 }
 
-.ant-modal-content .ant-modal-close-x:hover {
-    background-color: #65499c;
+
+.ant-modal-body .ant-picker-cell-in-view,
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-today .ant-picker-calendar-date-value {
+  color: seashell;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date .ant-picker-calendar-date-value {
+  color: #322c58;
+}
+
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date .ant-picker-calendar-date-value:hover {
+  color: #6f2da8;
+}
+
+.ant-picker-cell-selected .ant-picker-cell-inner:hover {
+  color: #6f2da8 !important;
+}
+
+.picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner,
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected:hover .ant-picker-calendar-date,
+.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #9978ad !important;
 }
 
 
 .weather-outer .weather-icon,
 .emotion-outer .emotion-icon {
-    font-size: large;
-    vertical-align: bottom;
+  font-size: large;
+  vertical-align: bottom;
 }
-
