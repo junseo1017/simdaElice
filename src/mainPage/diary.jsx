@@ -14,19 +14,27 @@ const {TabPane} = Tabs;
 const Diary = memo(() => {
   const [topData, setTopData] = useState({});
   const [clickModal, setclickModal] = useState(false);
-  const [currentTap, setCurrentTap] = useState('1');
+  const [currentTap, setCurrentTap] = useState({cur: '1', prev: ''});
   // ImageUpload에 props로 보낼 state와 setState
   const [images, setImages] = useState([]);
-  const [clickTapOne, setClickTapOne] = useState(false);
+//   const [clickTapOne, setClickTapOne] = useState(false);
   const [diaryContent, setDiaryContent] = useState('');
 
   const listData = useRef();
 
-  //const wholeData = useMemo(() => requestData(), []);
-  //return에           <ImageUpload /> 수정예정
-  const onClickTap = (e) => {
-    if (e === '2') {
-      setclickModal(true);
+  
+    //const wholeData = useMemo(() => requestData(), []);
+    //return에           <ImageUpload /> 수정예정
+    const onClickTap = (e) => {
+        if (e === '2') {
+            setclickModal(true);
+            setCurrentTap((prev) => ({...prev, cur: e, prev: prev.cur}));
+        } else {
+            setCurrentTap((prev) => ({...prev, cur: e}));
+        }
+    };
+
+    
     }
     setCurrentTap(e);
   };
@@ -73,23 +81,25 @@ const Diary = memo(() => {
     }
   };
 
-  return (
-    <>
-      <Tabs tabPosition={'right'} onTabClick={onClickTap} activeKey={currentTap}>
-        <TabPane tab='Diary' key='1'>
-          <DiaryTopData setTopData={setTopData} />
-          <ImageUpload images={images} onUploadImage={setImages} />
-          <DairyContent setDiaryContent={setDiaryContent} onClick={onClick} />
-        </TabPane>
-        <TabPane tab='Calender' key='2'>
-          <CalendarModal setclickModal={setclickModal} clickModal={clickModal} setCurrentTap={setCurrentTap} getDiaryList={getDiaryList} />
-        </TabPane>
-        <TabPane tab='Diary List' key='3'>
-          <DiaryList listData={listData} />
-        </TabPane>
-      </Tabs>
-    </>
-  );
+    
+    return (
+        <>
+            <Tabs tabPosition={'right'} onTabClick={onClickTap} activeKey={currentTap.cur}>
+                <TabPane tab='Diary' key='1'>
+                    <DiaryTopData setTopData={setTopData} />
+                    <ImageUpload images={images} onUploadImage={setImages} />
+                    <DairyContent setDiaryContent={setDiaryContent} onClick={onClick} />
+                </TabPane>
+                <TabPane tab='Calender' key='2'>
+                    <CalendarModal setclickModal={setclickModal} clickModal={clickModal} setCurrentTap={setCurrentTap} getDiaryList={getDiaryList} />
+                </TabPane>
+                <TabPane tab='Diary List' key='3'>
+                    <DiaryList listData={listData} />
+                </TabPane>
+            </Tabs>
+        </>
+    );
+
 });
 
 export default Diary;
