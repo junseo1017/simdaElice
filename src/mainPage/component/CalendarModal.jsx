@@ -53,10 +53,6 @@ const CalendarModal = memo(({ setclickModal, clickModal, setCurrentTap, getDiary
             Object.keys(listData).length ?
                 <ul>
                     <li>
-                        <Badge.Ribbon text="그 날짜의 계획">
-                        </Badge.Ribbon>
-                    </li>
-                    <li>
                         <FontAwesomeIcon icon={weatherArray[listData.weather]} />
                     </li>
                     <li>
@@ -69,7 +65,7 @@ const CalendarModal = memo(({ setclickModal, clickModal, setCurrentTap, getDiary
 
     const handleCancel = () => {
         setclickModal(false);
-        setCurrentTap('1');
+        setCurrentTap((prev) => ({...prev, cur: prev.prev}));
     }
 
 
