@@ -5,3 +5,11 @@
 .diaryListButton {
   width: 100px;
 }
+
+.paper {
+  height: 400px !important;
+}
+
+.ant-modal-body {
+  height: 600px;
+}
