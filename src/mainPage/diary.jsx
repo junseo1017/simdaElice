@@ -17,10 +17,10 @@ const Diary = memo(() => {
 
   const [topData, setTopData] = useState({});
   const [clickModal, setclickModal] = useState(false);
-  const [currentTap, setCurrentTap] = useState('1');
+  const [currentTap, setCurrentTap] = useState({cur: '1', prev: ''});
   // ImageUpload에 props로 보낼 state와 setState
   const [images, setImages] = useState([]);
-  const [clickTapOne, setClickTapOne] = useState(false);
+//   const [clickTapOne, setClickTapOne] = useState(false);
   const [diaryContent, setDiaryContent] = useState('');
 
 
@@ -31,8 +31,10 @@ const Diary = memo(() => {
     const onClickTap = (e) => {
         if (e === '2') {
             setclickModal(true);
+            setCurrentTap((prev) => ({...prev, cur: e, prev: prev.cur}));
+        } else {
+            setCurrentTap((prev) => ({...prev, cur: e}));
         }
-        setCurrentTap(e);
     };
 
     useEffect(() => {
@@ -100,7 +102,7 @@ const Diary = memo(() => {
     
     return (
         <>
-            <Tabs tabPosition={'right'} onTabClick={onClickTap} activeKey={currentTap}>
+            <Tabs tabPosition={'right'} onTabClick={onClickTap} activeKey={currentTap.cur}>
                 <TabPane tab='Diary' key='1'>
                     <DiaryTopData setTopData={setTopData} />
                     <ImageUpload images={images} onUploadImage={setImages} />
