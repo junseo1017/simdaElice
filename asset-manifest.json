@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/simdaElice/static/css/main.10c1b957.css",
+    "main.js": "/simdaElice/static/js/main.39d291b8.js",
+    "index.html": "/simdaElice/index.html",
+    "main.10c1b957.css.map": "/simdaElice/static/css/main.10c1b957.css.map",
+    "main.39d291b8.js.map": "/simdaElice/static/js/main.39d291b8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10c1b957.css",
+    "static/js/main.39d291b8.js"
+  ]
+}
