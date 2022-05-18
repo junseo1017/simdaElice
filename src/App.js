@@ -8,7 +8,7 @@ import "./App.css";
 
 const App = () => {
   return (
-    <Routes basename={process.env.PUBLIC_URL}>
+    <Routes>
       <Route path="/" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/main" element={<Diary />} />
