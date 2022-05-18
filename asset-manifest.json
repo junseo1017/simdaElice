@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/simdaElice/login/static/css/main.10c1b957.css",
-    "main.js": "/simdaElice/login/static/js/main.39d291b8.js",
-    "index.html": "/simdaElice/login/index.html",
-    "main.10c1b957.css.map": "/simdaElice/login/static/css/main.10c1b957.css.map",
-    "main.39d291b8.js.map": "/simdaElice/login/static/js/main.39d291b8.js.map"
+    "main.css": "/static/css/main.ff85386d.css",
+    "main.js": "/static/js/main.39d291b8.js",
+    "index.html": "/index.html",
+    "main.ff85386d.css.map": "/static/css/main.ff85386d.css.map",
+    "main.39d291b8.js.map": "/static/js/main.39d291b8.js.map"
   },
   "entrypoints": [
-    "static/css/main.10c1b957.css",
+    "static/css/main.ff85386d.css",
     "static/js/main.39d291b8.js"
   ]
 }
