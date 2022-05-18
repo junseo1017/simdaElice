@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 
 * {
   margin: 0;
@@ -11,7 +11,7 @@ body {
   display: grid;
   align-items: center;
   justify-items: center;
-  font-family: "Fjalla One";
+  font-family: 'Fjalla One';
 }
 
 .ant-tabs-content {
@@ -41,7 +41,7 @@ ant-tabs-tabpane-active {
   border: 0;
   margin: 2px 3px;
   font-size: 10px;
-  font-family: "Elice Digital Baeum", sans-serif;
+  font-family: 'Elice Digital Baeum', sans-serif;
 }
 .ant-tabs-content button:hover {
   background-color: #9575cd;
@@ -72,8 +72,7 @@ ant-tabs-tabpane-active {
   background: #a9adb6;
   border-radius: 0.25em;
   perspective: 300;
-  box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2),
-    inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
 }
 
 .weather-selection .weather-option,
@@ -116,13 +115,8 @@ ant-tabs-tabpane-active {
   height: 100%;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0.25em;
-  background-image: -webkit-linear-gradient(
-    top,
-    transparent 0%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
 }
-
 .weather-outer,
 .emotion-outer {
   background-color: #65499c;

@@ -20,7 +20,7 @@
   border-radius: 10px;
   width: 150px;
   min-height: 2.3em;
-  background: #A9ADB6;
+  background: #a9adb6;
   border-radius: 0.25em;
   perspective: 300;
   box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 0.25em 1em rgba(0, 0, 0, 0.1);
@@ -66,9 +66,7 @@
   height: 100%;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0.25em;
-  background-image: -webkit-linear-gradient(top,
-      transparent 0%,
-      rgba(0, 0, 0, 0.1) 100%);
+  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
 }
 
 .weather-outer,
@@ -117,7 +115,6 @@
 .emotion-selection:hover .emotion-inner {
   transition-timing-function: cubic-bezier(0.2, 0.7, 0.1, 1.1);
 }
-
 
 .datestyle {
   background-color: #65499c;
@@ -215,7 +212,6 @@ label.ant-radio-button-wrapper .ant-radio-button,
   overflow: hidden;
 }
 
-
 .ant-picker-calendar {
   background-color: #9c90c0 !important;
   font-size: 1.2em;
@@ -234,10 +230,10 @@ label.ant-radio-button-wrapper .ant-radio-button,
 }
 
 /*
-
-Modal
-
-*/
+  
+  Modal
+  
+  */
 
 .ant-modal-content .ant-modal-close-x:hover {
   border-radius: 20px;
@@ -301,7 +297,6 @@ Modal
   border-radius: 10px;
 }
 
-
 .ant-modal-footer .ant-btn-primary:hover,
 .ant-modal-footer .ant-btn-default:hover {
   color: #b6b7d6;
@@ -312,7 +307,6 @@ Modal
   gap: 3%;
   flex-direction: row;
 }
-
 
 .ant-modal-body .ant-picker-cell-in-view,
 .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-today .ant-picker-calendar-date-value {
@@ -332,12 +326,38 @@ Modal
 }
 
 .picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
-.ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner,
+.ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end)
+  .ant-picker-cell-inner,
 .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected:hover .ant-picker-calendar-date,
 .ant-picker-cell-selected .ant-picker-cell-inner {
   background-color: #9978ad !important;
 }
 
+.ant-picker-calendar-header .ant-select .ant-select-selector,
+.ant-select-selection-item,
+.rc-virtual-list-holder-inner,
+.ant-radio-button,
+.ant-modal-footer .ant-btn-default {
+  background-color: #65499c;
+}
+
+.ant-radio-group .ant-radio-button-wrapper:nth-child(2) {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+.ant-modal-body .ant-picker-calendar-header {
+  position: relative;
+  right: 45px;
+}
+
+.ant-modal-content .ant-modal-close-x:hover {
+  background-color: #65499c;
+}
 
 .weather-outer .weather-icon,
 .emotion-outer .emotion-icon {

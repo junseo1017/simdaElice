@@ -1,5 +1,5 @@
-import React, { useState, memo, useCallback, useRef } from "react";
-import { Button } from "antd";
+import React, {useState, memo, useCallback, useRef} from 'react';
+import {Button} from 'antd';
 
 import './layout/diarycontent.css';
 
@@ -13,15 +13,11 @@ const DiaryContent = memo((props) => {
 
   return (
     <>
-      <div className="paper">
-        <div className="paper-content">
-          <textarea
-            onChange={diaryChange}
-            placeholder="일기를 입력해주세요!"
-            autoFocus
-          ></textarea>
+      <div className='paper'>
+        <div className='paper-content'>
+          <textarea onChange={diaryChange} placeholder='일기를 입력해주세요!' autoFocus></textarea>
         </div>
-        <Button onClick={onSubmitBtn} className="submitButton">
+        <Button onClick={onSubmitBtn} className='submitButton'>
           작성완료
         </Button>
       </div>
